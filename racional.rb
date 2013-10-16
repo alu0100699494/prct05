@@ -6,8 +6,8 @@ class Fraccion
 	attr_reader :numerador, :denominador
 	def initialize(numerador, denominador)
 		# Comprobar si son enteros. En caso de que no lo sean, se genera una excepción
-		raise ArgumentError, 'Argumentos no enteros.' unless numerador.is_a? Integer and denominador.is_a? Integer
-		raise ArgumentError, 'Denominador nulo.' unless denominador != 0
+		raise ArgumentError , 'Argumentos no enteros.' unless numerador.is_a? Integer and denominador.is_a? Integer
+		raise ArgumentError , 'Denominador nulo.' unless denominador != 0
 		
 		@numerador = numerador
 		@denominador = denominador
@@ -30,7 +30,7 @@ class Fraccion
 	# Racional puede ser tanto de tipo Fraccion como de tipo Entero (Integer)
 	def suma(racional)
 		# Si no es un objeto del tipo Fraccion, devuelve una excepcion
-		raise ArgumentError, 'Argumento no racional' unless racional.is_a? Fraccion or racional.is_a? Integer
+		raise ArgumentError, 'Argumento no racional o entero' unless racional.is_a? Fraccion or racional.is_a? Integer
 		
 		# Sobra mcm
 		# mcm = lcm(@denominador, racional.b)
@@ -49,7 +49,7 @@ class Fraccion
 	end
 	
 	def resta(racional)
-		raise ArgumentError, 'Argumento no racional' unless racional.is_a? Fraccion or racional.is_a? Integer
+		raise ArgumentError, 'Argumento no racional o entero' unless racional.is_a? Fraccion or racional.is_a? Integer
 
 		if racional.is_a? Fraccion
 			resultado = Fraccion.new(@numerador*racional.denominador - @denominador*racional.numerador, @denominador*racional.denominador) # a/b - c/d = (a*d - b*c)/b*d
@@ -59,7 +59,7 @@ class Fraccion
 	end
 	
 	def producto(racional)
-		raise ArgumentError, 'Argumento no racional' unless racional.is_a? Fraccion or racional.is_a? Integer
+		raise ArgumentError, 'Argumento no racional o entero' unless racional.is_a? Fraccion or racional.is_a? Integer
 		
 		if racional.is_a? Fraccion
 			resultado = Fraccion.new(@numerador*racional.numerador, @denominador*racional.denominador) # a/b * c/d = (a*c)/(b*d)
@@ -69,7 +69,7 @@ class Fraccion
 	end
 	
 	def division(racional)
-		raise ArgumentError, 'Argumento no racional' unless racional.is_a? Fraccion or racional.is_a? Integer
+		raise ArgumentError, 'Argumento no racional o entero' unless racional.is_a? Fraccion or racional.is_a? Integer
 		
 		if racional.is_a? Fraccion
 			resultado = Fraccion.new(@numerador*racional.denominador, @denominador*racional.numerador) # (a/b) / (c/d) = (a*d)/(b*c)

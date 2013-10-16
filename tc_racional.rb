@@ -7,6 +7,7 @@ class Test_Fraccion < Test::Unit::TestCase
 	def test_simple
 		# Instanciación
 		assert_equal( "2/3", Fraccion.new(2,3).to_s )
+		assert_raise( ArgumentError) { Fraccion.new(1, 0) } # Fallo
 	end
 	
 	def test_simple2
@@ -25,12 +26,12 @@ class Test_Fraccion < Test::Unit::TestCase
 	end
 	
 	def test_typecheck
-		assert_raise( RuntimeError ) { Fraccion.new('a', "b") }
+		assert_raise( ArgumentError ) { Fraccion.new('a', "b") }
 	end
 	
 	def test_failure
-		assert_raise( RuntimeError ) { (Fraccion.new(1, 3)).division(0) } # Imposible dividir por 0
-		assert_equal( "2/3", (Fraccion.new(2, 3).producto( Fraccion.new(0, 3)).to_s ), "Multiplicar a/b por 0/c debe dar 0/(b*c)" )
-		assert_equal( "6/9", Fraccion.new(6, 9).to_s ) # La reducción funciona
+		assert_raise( ArgumentError ) { (Fraccion.new(1, 3)).division(0) } # Imposible dividir por 0 y que se cree un objeto del tipo a/0
+		assert_not_equal( "6/9", (Fraccion.new(6, 9)).to_s ) # La reducción funciona
+		assert_not_equal( "2/3", (Fraccion.new(2, 3).producto( Fraccion.new(0, 3)).to_s ), "Multiplicar a/b por 0/c debe dar 0/(b*c)" )
 	end
 end
