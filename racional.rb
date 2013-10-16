@@ -4,14 +4,18 @@ require "./gcd.rb"
 
 class Fraccion
 	def initialize(numerador, denominador)
-		# Comprobar si son enteros
+		# Comprobar si son enteros. En caso de que no lo sean, se genera una excepción
+		raise ArgumentError, 'Argumentos no enteros.' unless numerador.is_a? Integer and denominador.is_a? Integer
+		raise ArgumentError, 'Denominador nulo.' unless denominador != 0
+		
 		@numerador = numerador
-		if denominador < 0
-			# lanzar excepción, o corregir
-		end
 		@denominador = denominador
 		
 		# Reducir a expresión mínima
+		reducir
+	end
+	
+	def reducir
 		comun_div = gcd(numerador, denominador)
 		@numerador = @numerador/comun_div
 		@denominador = @denominador/comun_div
