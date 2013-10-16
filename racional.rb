@@ -3,7 +3,7 @@
 require "./gcd.rb"
 
 class Fraccion
-	attr_reader :a, :b
+	attr_reader :numerador, :denominador
 	def initialize(numerador, denominador)
 		# Comprobar si son enteros. En caso de que no lo sean, se genera una excepción
 		raise ArgumentError, 'Argumentos no enteros.' unless numerador.is_a? Integer and denominador.is_a? Integer
@@ -42,7 +42,7 @@ class Fraccion
 		# Optimizado
 		
 		if racional.is_a? Fraccion
-			resultado = new Fraccion(@numerador*racional.b + @denominador*racional.a, @denominador*racional.b) # a/b + c/d = (a*d + b*c)/b*d
+			resultado = new Fraccion(@numerador*racional.denominador + @denominador*racional.numerador, @denominador*racional.denominador) # a/b + c/d = (a*d + b*c)/b*d
 		else
 			resultado = new Fraccion(@numerador + @denominador*racional, @denominador) # a/b + c = (a + c*b)/b
 		end
@@ -52,7 +52,7 @@ class Fraccion
 		raise ArgumentError, 'Argumento no racional' unless racional.is_a? Fraccion or racional.is_a? Integer
 
 		if racional.is_a? Fraccion
-			resultado = new Fraccion(@numerador*racional.b - @denominador*racional.a, @denominador*racional.b) # a/b - c/d = (a*d - b*c)/b*d
+			resultado = new Fraccion(@numerador*racional.denominador - @denominador*racional.numerador, @denominador*racional.denominador) # a/b - c/d = (a*d - b*c)/b*d
 		else
 			resultado = new Fraccion(@numerador - @denominador*racional, @denominador) # a/b - c = (a - c*b)/b
 		end
@@ -62,7 +62,7 @@ class Fraccion
 		raise ArgumentError, 'Argumento no racional' unless racional.is_a? Fraccion or racional.is_a? Integer
 		
 		if racional.is_a? Fraccion
-			resultado = new Fraccion(@numerador*racional.a, @denominador*racional.b) # a/b * c/d = (a*c)/(b*d)
+			resultado = new Fraccion(@numerador*racional.numerador, @denominador*racional.denominador) # a/b * c/d = (a*c)/(b*d)
 		else
 			resultado = new Fraccion(@numerador*racional, @denominador) # a/b * c = (a*c)/b
 		end
@@ -72,10 +72,9 @@ class Fraccion
 		raise ArgumentError, 'Argumento no racional' unless racional.is_a? Fraccion or racional.is_a? Integer
 		
 		if racional.is_a? Fraccion
-			resultado = new Fraccion(@numerador*racional.b, @denominador*racional.a) # (a/b) / (c/d) = (a*d)/(b*c)
+			resultado = new Fraccion(@numerador*racional.denominador, @denominador*racional.numerador) # (a/b) / (c/d) = (a*d)/(b*c)
 		else
 			resultado = new Fraccion(@numerador, @denominador*racional) # a/b * c = (a*c)/b
 		end
 	end
-	
 end
