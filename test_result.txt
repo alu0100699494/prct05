@@ -1,0 +1,29 @@
+$ ruby tc_racional.rb
+3
+Run options: 
+
+# Running tests:
+
+F...
+
+Finished tests in 0.004000s, 1000.0000 tests/s, 3250.0000 assertions/s.
+
+  1) Failure:
+test_failure(Test_Fraccion) [tc_racional.rb:34]:
+<"6/9"> expected but was
+<"2/3">.
+
+4 tests, 13 assertions, 1 failures, 0 errors, 0 skips
+
+ruby -v: ruby 2.0.0p247 (2013-06-27) [i386-mingw32]
+
+
+-----------------------------------------
+Explicación:
+Se han creado varios métodos para las pruebas unitarias:
+1- test_simple comprobará la instanciación de los métodos, probando el método new de forma correcta, y el método new con un 0 en el denominador (lanzará una excepción).
+2- test_simple2 comprobará las operaciones aritméticas entre números racionales y racionales o enteros. Todas funcionan correctamente.
+3- test_typecheck generá una excepción prevista tal como se ha descrito en su línea, ya que no se pueden usar parámetros que no sean enteros.
+4- test_failure generará un único fallo, ya que la segunda línea no se cumplirá.
+
+NOTA DEL PUNTO 4: Al parecer, el intérprete de ruby, al generar un fallo (failure) en una función, deja de ejecutarla, por lo que sólo podemos generar un fallo por método de prueba (por eso sólo he generado un único fallo en la última función).
