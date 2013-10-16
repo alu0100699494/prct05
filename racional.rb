@@ -42,9 +42,9 @@ class Fraccion
 		# Optimizado
 		
 		if racional.is_a? Fraccion
-			resultado = new Fraccion(@numerador*racional.denominador + @denominador*racional.numerador, @denominador*racional.denominador) # a/b + c/d = (a*d + b*c)/b*d
+			resultado = Fraccion.new(@numerador*racional.denominador + @denominador*racional.numerador, @denominador*racional.denominador) # a/b + c/d = (a*d + b*c)/b*d
 		else
-			resultado = new Fraccion(@numerador + @denominador*racional, @denominador) # a/b + c = (a + c*b)/b
+			resultado = Fraccion.new(@numerador + @denominador*racional, @denominador) # a/b + c = (a + c*b)/b
 		end
 	end
 	
@@ -52,9 +52,9 @@ class Fraccion
 		raise ArgumentError, 'Argumento no racional' unless racional.is_a? Fraccion or racional.is_a? Integer
 
 		if racional.is_a? Fraccion
-			resultado = new Fraccion(@numerador*racional.denominador - @denominador*racional.numerador, @denominador*racional.denominador) # a/b - c/d = (a*d - b*c)/b*d
+			resultado = Fraccion.new(@numerador*racional.denominador - @denominador*racional.numerador, @denominador*racional.denominador) # a/b - c/d = (a*d - b*c)/b*d
 		else
-			resultado = new Fraccion(@numerador - @denominador*racional, @denominador) # a/b - c = (a - c*b)/b
+			resultado = Fraccion.new(@numerador - @denominador*racional, @denominador) # a/b - c = (a - c*b)/b
 		end
 	end
 	
@@ -62,9 +62,9 @@ class Fraccion
 		raise ArgumentError, 'Argumento no racional' unless racional.is_a? Fraccion or racional.is_a? Integer
 		
 		if racional.is_a? Fraccion
-			resultado = new Fraccion(@numerador*racional.numerador, @denominador*racional.denominador) # a/b * c/d = (a*c)/(b*d)
+			resultado = Fraccion.new(@numerador*racional.numerador, @denominador*racional.denominador) # a/b * c/d = (a*c)/(b*d)
 		else
-			resultado = new Fraccion(@numerador*racional, @denominador) # a/b * c = (a*c)/b
+			resultado = Fraccion.new(@numerador*racional, @denominador) # a/b * c = (a*c)/b
 		end
 	end
 	
@@ -72,9 +72,9 @@ class Fraccion
 		raise ArgumentError, 'Argumento no racional' unless racional.is_a? Fraccion or racional.is_a? Integer
 		
 		if racional.is_a? Fraccion
-			resultado = new Fraccion(@numerador*racional.denominador, @denominador*racional.numerador) # (a/b) / (c/d) = (a*d)/(b*c)
+			resultado = Fraccion.new(@numerador*racional.denominador, @denominador*racional.numerador) # (a/b) / (c/d) = (a*d)/(b*c)
 		else
-			resultado = new Fraccion(@numerador, @denominador*racional) # a/b * c = (a*c)/b
+			resultado = Fraccion.new(@numerador, @denominador*racional) # a/b * c = (a*c)/b
 		end
 	end
 end
